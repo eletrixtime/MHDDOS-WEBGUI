@@ -9,7 +9,7 @@ import threading
 # checking if the MHDDOS folder exist
 if not os.path.exists("data/mhddos"):
     os.system("git clone https://github.com/MatrixTM/MHDDoS data/mhddos")
-
+    os.system("cd data/mhddos && pip3 install -r requirements.txt")
 AUTHORIZED_IPS = []
 app = Flask(__name__,template_folder="html")
 app.secret_key = "secretqs^pdqsqdqd4q65sd465q"
