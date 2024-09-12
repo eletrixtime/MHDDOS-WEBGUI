@@ -81,8 +81,10 @@ def newattack():
                 process.stdout.close()
                 process.stderr.close()
                 process.wait()
-
+                LOGS.info("ATTACK ARGUMENTS: " + str(arguments))
+                
                 LOGS.info(f"Attack output: {out}")
+
                 LOGS.info("Attack completed")
 
             except Exception as e:
