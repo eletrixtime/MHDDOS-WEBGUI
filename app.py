@@ -6,11 +6,13 @@ import os
 import json
 import subprocess
 import threading
+import uuid
 # checking if the MHDDOS folder exist
 if not os.path.exists("data/mhddos"):
     os.system("git clone https://github.com/MatrixTM/MHDDoS data/mhddos")
     os.system("cd data/mhddos && pip3 install -r requirements.txt")
 AUTHORIZED_IPS = []
+ATTACKS = [] #ex : attacks[0] = "data/UUID.txt"
 app = Flask(__name__,template_folder="html")
 app.secret_key = "secretqs^pdqsqdqd4q65sd465q"
 class LOGS():
@@ -74,18 +76,23 @@ def newattack():
 
                 out = ""
                 for stdout_line in iter(process.stdout.readline, ""):
+                    with open("data/mhddos/attacks/" + str(uuid.uuid4()) + ".txt", "w") as f:
+                        f.write(stdout_line)
                     out += stdout_line
                 for stderr_line in iter(process.stderr.readline, ""):
+                    with open("data/mhddos/attacks/" + str(uuid.uuid4()) + ".txt", "w") as f:
+                        f.write(stderr_line)
                     out += stderr_line
 
                 process.stdout.close()
                 process.stderr.close()
+                
                 process.wait()
                 LOGS.info("ATTACK ARGUMENTS: " + str(arguments))
 
                 LOGS.info(f"Attack output: {out}")
 
-                LOGS.info("Attack completed")
+                LOGS.info("Attack Launched (threaded)")
 
             except Exception as e:
                 out = f"Error running attack: {e}"
