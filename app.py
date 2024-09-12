@@ -66,7 +66,7 @@ def newattack():
         out = "ERROR"
         def run_attack():
             global out
-            arguments = [f"{type_attack}", f"{url}", str(0), str(100), "proxies.txt",0 , f"{time}"]
+            arguments = [f"{type_attack}", f"{url}", str(0), str(100), "proxies.txt",str(0) , f"{time}"]
             command = ["python3", "data/mhddos/start.py"] + arguments
 
             try:
