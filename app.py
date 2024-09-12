@@ -73,6 +73,9 @@ def newattack():
             out = ""
             for line in process.stdout:
                 out += line + "\n"
+            for line in process.stderr:
+                out += line + "\n"
+            
             LOGS.info(f"Attack output: {out}")
             LOGS.info("Attack completed")
 
