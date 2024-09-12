@@ -84,8 +84,8 @@ def newattack():
                         f.write(stderr_line)
                     out += stderr_line
 
-                process.stdout.close()
-                process.stderr.close()
+                #process.stdout.close()
+                #process.stderr.close()
                 
                 process.wait()
                 LOGS.info("ATTACK ARGUMENTS: " + str(arguments))
@@ -93,7 +93,7 @@ def newattack():
                 LOGS.info(f"Attack output: {out}")
 
                 LOGS.info("Attack Launched (threaded)")
-
+                out = "Launching (this may take a while)"
             except Exception as e:
                 out = f"Error running attack: {e}"
                 LOGS.error(out)
