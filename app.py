@@ -76,11 +76,11 @@ def newattack():
 
                 out = ""
                 for stdout_line in iter(process.stdout.readline, ""):
-                    with open("data/mhddos/attacks/" + str(uuid.uuid4()) + ".txt", "w") as f:
+                    with open("data/" + str(uuid.uuid4()) + ".txt", "w") as f:
                         f.write(stdout_line)
                     out += stdout_line
                 for stderr_line in iter(process.stderr.readline, ""):
-                    with open("data/mhddos/attacks/" + str(uuid.uuid4()) + ".txt", "w") as f:
+                    with open("data/" + str(uuid.uuid4()) + ".txt", "w") as f:
                         f.write(stderr_line)
                     out += stderr_line
 
