@@ -87,7 +87,7 @@ def newattack():
                 #process.stdout.close()
                 #process.stderr.close()
                 
-                #process.wait()
+                process.wait()
                 LOGS.info("ATTACK ARGUMENTS: " + str(arguments))
 
                 LOGS.info(f"Attack output: {outthread}")
@@ -99,6 +99,7 @@ def newattack():
                 LOGS.error(outthread)
 
         attack_thread = threading.Thread(target=run_attack)
+        attack_thread.daemon = True
         attack_thread.start()
         flash(f"Attack launched \n {out}")
         flash("Done please wait... (can take a while)")
