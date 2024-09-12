@@ -1,0 +1,106 @@
+/* CSS Document */
+
+body {
+    background-color: #204942;
+    color: #000000;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login_form {
+    background-color: #e0e0e0;
+    border: 2px solid #ccc;
+    width: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+}
+
+.login_form h1 {
+    font-size: 18px;
+    text-align: center;
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.login_form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.login_form input[type="text"],
+.login_form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.login_form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 3px;
+    background-color: #ddd;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login_form input[type="submit"]:hover {
+    background-color: #ccc;
+}
+
+.login_form hr {
+    border: 0;
+    border-top: 1px solid #333;
+    margin: 10px 0;
+}
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    margin: 10px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.error h2 {
+    font-size: 16px;
+    margin: 0 0 5px;
+    color: #721c24;
+}
+
+.error p {
+    margin: 0;
+    padding: 0;
+}
+
+.error::before {
+    content: '⚠️ ';
+    font-size: 16px;
+    vertical-align: middle;
+}
+.panel{
+    background-color: #e0e0e0;
+    border: 2px solid #ccc;
+    width: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

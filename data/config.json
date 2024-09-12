@@ -1,0 +1,6 @@
+{
+    "server_ip": "127.0.0.1",
+    "server_port": 80,
+    "NOTE":"The username is admin",
+    "admin_password":"admin"
+}
