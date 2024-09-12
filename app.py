@@ -74,35 +74,35 @@ def newattack():
             try:
                 process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
-                out = ""
+                outthread = ""
                 for stdout_line in iter(process.stdout.readline, ""):
                     with open("data/" + str(uuid.uuid4()) + ".txt", "w") as f:
                         f.write(stdout_line)
-                    out += stdout_line
+                    outthread += stdout_line
                 for stderr_line in iter(process.stderr.readline, ""):
                     with open("data/" + str(uuid.uuid4()) + ".txt", "w") as f:
                         f.write(stderr_line)
-                    out += stderr_line
+                    outthread += stderr_line
 
                 #process.stdout.close()
                 #process.stderr.close()
                 
-                process.wait()
+                #process.wait()
                 LOGS.info("ATTACK ARGUMENTS: " + str(arguments))
 
-                LOGS.info(f"Attack output: {out}")
+                LOGS.info(f"Attack output: {outthread}")
 
                 LOGS.info("Attack Launched (threaded)")
                 out = "Launching (this may take a while)"
             except Exception as e:
                 out = f"Error running attack: {e}"
-                LOGS.error(out)
+                LOGS.error(outthread)
 
         attack_thread = threading.Thread(target=run_attack)
         attack_thread.start()
         flash(f"Attack launched \n {out}")
-        LOGS.info("New attack launched")
-    
+        flash("Done please wait... (can take a while)")
+
     return render_template("dash.html",attackout=out)
 @app.route("/dash")
 def dashboard():
