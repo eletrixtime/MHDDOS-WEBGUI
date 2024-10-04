@@ -40,4 +40,4 @@ SOFTWARE.
 > Here contains list of available mirrors
 
 - [Main (github)](https://github.com/EletrixTime/MHDDOS-WEBGUI)
-- [CryptCloud](https://cryptcloud.eletrix.fr)
+- [Git.eletrix.fr](http://git.eletrix.fr/eletrixtime/MHDDOS-WEBGUI/)
